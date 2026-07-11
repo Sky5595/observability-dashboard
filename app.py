@@ -1,5 +1,4 @@
 import gradio as gr
-import spaces
 import random
 from datetime import datetime, timedelta
 
@@ -18,7 +17,6 @@ def generate_mock_metrics(hours):
         logs.append((ts.strftime("%Y-%m-%d %H:%M"), latency, error_rate, drift_score))
     return logs
 
-@spaces.GPU
 def build_dashboard(hours, latency_threshold, error_threshold, drift_threshold):
     logs = generate_mock_metrics(int(hours))
     alerts = [l for l in logs if l[1] > latency_threshold or l[2] > error_threshold or l[3] > drift_threshold]
